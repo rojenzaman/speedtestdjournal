@@ -95,6 +95,8 @@ $ speedtestdjournal.sh -v -p
 * Print html with detailed tables
 * Beauty html
 * Json parsing html
+* Create POSIX-SH Compliant version
+* Require testing under OS X and BSD unix
 
 ### Contribution
 Please go to `Issues` or `Pull requests`
