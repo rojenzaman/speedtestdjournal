@@ -92,7 +92,7 @@ $ speedtestdjournal.sh -v -p
 ```
 
 ## TODO
-* Prin html with detailed tables
+* Print html with detailed tables
 * Beauty html
 * Json parsing html
 
