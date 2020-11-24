@@ -71,11 +71,11 @@ done
 mkdir -p $journal_path/{json,image}                     # check and create save dir
 echo "don't delete log.json" > $journal_path/README     # warning
 
-[ -x "$(command -v jq)" ] || {				                  # check jq
+[ -x "$(command -v jq)" ] || {				# check jq
 echo "jq not found, please install it."
 exit 1
 }
-[ -x "$(command -v speedtest-cli)" ] && {		            # check speedtest-cli
+[ -x "$(command -v speedtest-cli)" ] && {		# check speedtest-cli
 cli="speedtest-cli"
 } || {
 	[ -x "$(command -v speedtest.py)" ] && {
@@ -85,7 +85,7 @@ cli="speedtest-cli"
 		exit 1
 	}
 }
-[ -x "$(command -v curl)" ] || {			                  # check  curl
+[ -x "$(command -v curl)" ] || {			# check  curl
 	echo "curl not found, please install it."
 	exit 1
 }
