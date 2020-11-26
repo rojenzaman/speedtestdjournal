@@ -120,7 +120,7 @@ wget -O $image_file "$remote_png" &>/dev/null 		# save speedtest output as png. 
 
 							# json log
 [ -f $json_file -a -f $image_file ] && cat >> $json_log <<EOF
-{"json_file":"$file_date.json","png_file":"$file_date.png","timestamp":"$timestamp", "remote_png":"$remote_png"}
+{"json_file":"$file_date.json","png_file":"$file_date.png","timestamp":"$timestamp","remote_png":"$remote_png"}
 EOF
 
 exit 0
