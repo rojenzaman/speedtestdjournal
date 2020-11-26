@@ -5,46 +5,6 @@ This script create speedtest-cli journals as json and image data and it can also
 
 *speedtestdjournal uses **speedtest.net** tool of `speedtest-cli`, please read [Privacy Policy](https://www.speedtest.net/about/privacy) before perform this script in your system.*
 
-
-## Install
-
-Go to your prefer script path (such as in here /usr/bin) and install it:
-```
-# curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
-# chmod 750 /usr/bin/speedtestdjournal.sh
-```
-
-## Simple Usage
-
-```
-$ speedtestdjournal.sh -h
-usage: ./speedtestdjournal.sh [-p] [-v] [-h]
- -p       print journals as html file (image gallery)
- -v       verbose output
- -h       display help page
-```
-
-## Set Journal Path (log files path)
-In default journal path is under home directory as `$HOME/speedtestdjournal/`. We suggest `/var/log/speedtestdjournal/` directory for posixly.
-Change it:
-```bash
-journal_path=/var/log/speedtestdjournal # go to line 20 and set journal_path string to /var/log/speedtestdjournal
-```
-
-## Set as a Crontab
-Set crontab to perform automate, it is good idea to logging. 
-You can set @weekly @hourly @monthly @daily or any cron param.
-```
-$ crontab -e
-@daily speedtestdjournal.sh
-```
-
-## Print Test Results as HTML From Journal
-An example at here [speedtestdjournal.html](https://rojenzaman.github.io/speedtestdjournal.html)
-```
-$ speedtestdjournal.sh -p > output.html
-```
-
 ## Journaling Format
 
 ### tree of /var/log/speedtestdjournal/
@@ -69,6 +29,32 @@ $ speedtestdjournal.sh -p > output.html
 {"json_file":"2020-11-24_01-26.json","png_file":"2020-11-24_01-26.png","timestamp":"1606177577", "remote_png":"http://www.speedtest.net/result/10471582209.png"}
 ```
 
+
+## Install
+
+Go to your prefer script path (such as in here /usr/bin) and install it:
+```
+# curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
+# chmod 750 /usr/bin/speedtestdjournal.sh
+```
+
+
+## Set Journal Path (log files path)
+In default journal path is under home directory as `$HOME/speedtestdjournal/`. We suggest `/var/log/speedtestdjournal/` directory for posixly.
+Change it:
+```bash
+journal_path=/var/log/speedtestdjournal # go to line 20 and set journal_path string to /var/log/speedtestdjournal
+```
+
+## Set as a Crontab
+Set crontab to perform automate, it is good idea to logging. 
+You can set @weekly @hourly @monthly @daily or any cron param.
+```
+$ crontab -e
+@daily /usr/bin/speedtestdjournal.sh
+```
+
+
 ## Speedtest-cli Configuration
 ```bash
 #usr_arg="--no-download"                                # uncomment if you want do not perform download test
@@ -81,7 +67,31 @@ share="--share"                                         # if you don't want crea
 ```
 > Note: This script can understand if the cli command is speedtest-cli or speedtest.py
 
-## Verbosing
+
+## Simple Usage
+
+```
+$ speedtestdjournal.sh -h
+usage: ./speedtestdjournal.sh [-v] [-p|-i|-l] [-h]
+ -v	verbose output
+ -p	print journals as html file (image gallery)
+ -i	download png files from /var/log/speedtestdjournal/log.json
+ -l	list all speedtest results as table from /var/log/speedtestdjournal/json/*.json
+ -h	display help page
+```
+
+
+## Functions
+
+
+### Print Test Results as HTML From Journal
+An example at here [speedtestdjournal.html](https://rojenzaman.github.io/speedtestdjournal.html)
+```
+$ speedtestdjournal.sh -p > output.html
+```
+
+
+### Verbosing
 ```
 $ speedtestdjournal.sh -v
 ```
@@ -89,6 +99,30 @@ or
 
 ```
 $ speedtestdjournal.sh -v -p
+```
+
+### Download PNG files
+
+download png files from log.json
+
+```bash
+$ speedtestdjournal.sh -i  # if image exist will skip
+```
+
+### List Results as Table (template)
+
+list all speedtest results as table from speedtestdjournal/json/*.json
+
+```
+$ speedtestdjournal.sh -l
+DOWNLOADS	UPLOADS
+   9.39M	 829.62K
+  12.87M	 781.28K
+  12.54M	 791.03K
+  12.74M	 829.52K
+  12.76M	 661.64K
+  12.87M	 793.82K
+  12.67M	 681.81K
 ```
 
 ## TODO
