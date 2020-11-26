@@ -10,14 +10,16 @@
 # usage
 usage() {
 echo "usage: ./`basename $0` [-p] [-v] [-h]"
-echo " -p       print journals as html file (image gallery)"
-echo " -v       verbose output"
-echo " -h       display help page"
+echo " -p	print journals as html file (image gallery)"
+echo " -i	download png files from $journal_path/log.json"
+echo " -l	list all speedtest results as table from $journal_path/json/*.json"
+echo " -v	verbose output"
+echo " -h	display help page"
 exit 0
 }
 
 # configuration section
-journal_path=$HOME/speedtestdjournal                    # default journal path is under at home directory as speedtestdjournal
+journal_path=$HOME/speedtestdjournal			# default journal path is under at home directory as speedtestdjournal
 json_log=$journal_path/log.json                         # json log for print html
 timestamp=`date +%s`                                    # set timestamp
 file_date=$(date +"%Y-%m-%d_%H-%M" -d "@$timestamp")    # default file time format, use unix time "%s" insted of this
@@ -51,14 +53,34 @@ EOF
 exit 0
 }
 
+download_png() {					# download png files
+download_list=$(mktemp)
+cat $json_log | jq -r '.png_file, .remote_png' | paste - - > $download_list
+while IFS=$'\t' read -r png_file remote_png
+do
+wget --no-verbose -nc -O $journal_path/image/$png_file "$remote_png"
+done < $download_list
+rm $download_list
+exit 0
+}
 
-while getopts ":hvp" opt; do                            # check optional arguments
+table_result() {					# list test results as table. (it is a template, must be developed)
+(echo -e "DOWNLOADS\nUPLOADS"; cat $journal_path/json/* | jq -r '.download, .upload' | xargs numfmt --to iec --format "%8.2f") | paste - -
+exit 0
+}
+
+
+while getopts ":hvpil" opt; do				# check optional arguments
   case ${opt} in
     h ) usage
       ;;
     v ) set -x
       ;;
     p ) print_html
+      ;;
+    i ) download_png
+      ;;
+    l ) table_result
       ;;
     \? ) usage
       ;;
