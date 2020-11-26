@@ -9,11 +9,11 @@
 
 # usage
 usage() {
-echo "usage: ./`basename $0` [-p] [-v] [-h]"
-echo " -p	print journals as html file (image gallery)"
-echo " -i	download png files from $journal_path/log.json"
-echo " -l	list all speedtest results as table from $journal_path/json/*.json"
+echo "usage: ./`basename $0` [-v] [-p|-i|-l] [-h]"
 echo " -v	verbose output"
+echo " -p	print journals as html file (image gallery)"
+echo " -i	download png files from /var/log/speedtestdjournal/log.json"
+echo " -l	list all speedtest results as table from /var/log/speedtestdjournal/json/*.json"
 echo " -h	display help page"
 exit 0
 }
