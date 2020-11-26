@@ -19,7 +19,6 @@ exit 0
 # configuration section
 journal_path=$HOME/speedtestdjournal                    # default journal path is under at home directory as speedtestdjournal
 json_log=$journal_path/log.json                         # json log for print html
-user_agent="Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
 timestamp=`date +%s`                                    # set timestamp
 file_date=$(date +"%Y-%m-%d_%H-%M" -d "@$timestamp")    # default file time format, use unix time "%s" insted of this
 json_file=$journal_path/json/$file_date.json            # set file name and location for main script
