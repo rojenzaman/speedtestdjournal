@@ -80,6 +80,17 @@ usage: ./speedtestdjournal.sh [-v] [-p|-i|-l] [-h]
  -h	display help page
 ```
 
+For get instant speed test just type:
+
+```
+$ speedtestdjournal.sh
+```
+And get it:
+
+```
+$ speedtestdjournal.sh -l | tail -1
+```
+
 
 ## Functions
 
