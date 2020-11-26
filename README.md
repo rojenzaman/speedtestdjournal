@@ -10,8 +10,8 @@ This script create speedtest-cli journals as json and image data and it can also
 
 Go to your prefer script path (such as in here /usr/bin) and install it:
 ```
-$ curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
-$ chmod 755 /usr/bin/speedtestdjournal.sh
+# curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
+# chmod 750 /usr/bin/speedtestdjournal.sh
 ```
 
 ## Simple Usage
