@@ -85,8 +85,8 @@ cli="speedtest-cli"
 		exit 1
 	}
 }
-[ -x "$(command -v curl)" ] || {			# check  curl
-	echo "curl not found, please install it."
+[ -x "$(command -v wget)" ] || {			# check  wget
+	echo "wget not found, please install it."
 	exit 1
 }
 
@@ -95,7 +95,7 @@ cli="speedtest-cli"
                                                         # save speedtest output as json. remove pipe and jq command for writing pure json when journaling
 $cli --json $share $usr_arg $server $exclude $ssl $usr_arg2 | jq > $json_file
 remote_png=$(cat $json_file | jq -r '.share')
-curl -s -A "$user_agent" $remote_png > $image_file      # save speedtest output as png. uncomment this if you don't want.
+wget -O $image_file "$remote_png " 			# save speedtest output as png. uncomment this if you don't want.
 
 							# json log
 [ -f $json_file -a -f $image_file ] && cat >> $json_log <<EOF
