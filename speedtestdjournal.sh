@@ -9,11 +9,12 @@
 
 # usage
 usage() {
-echo "usage: ./`basename $0` [-v] [-p|-i|-l] [-h]"
+echo "usage: ./`basename $0` [-v] [-p|-i|-l|-r] [-h]"
 echo " -v	verbose output"
 echo " -p	print journals as html file (image gallery)"
 echo " -i	download png files from /var/log/speedtestdjournal/log.json"
 echo " -l	list all speedtest results as table from /var/log/speedtestdjournal/json/*.json"
+echo " -r	remove empty logs"
 echo " -h	display help page"
 exit 0
 }
@@ -69,21 +70,27 @@ table_result() {					# list test results as table. (it is a template, must be de
 exit 0
 }
 
+remove_empty() {
+log_list=$(mktemp)
+cat $journal_path/log.json | jq -r '.timestamp, .remote_png' | paste - - > $log_list
+while IFS=$'\t' read -r timestamp remote_png;
+do
+[ -z $remote_png ] && grep -v "$timestamp" $journal_path/log.json > /tmp/log.json && mv /tmp/log.json $journal_path/log.json;
+done < $log_list
+rm $log_list
+find $journal_path -size  0 -print -delete
+exit 0
+}
 
-while getopts ":hvpil" opt; do				# check optional arguments
+while getopts ":hvpilr" opt; do				# check optional arguments
   case ${opt} in
-    h ) usage
-      ;;
-    v ) set -x
-      ;;
-    p ) print_html
-      ;;
-    i ) download_png
-      ;;
-    l ) table_result
-      ;;
-    \? ) usage
-      ;;
+    h ) usage ;;
+    v ) set -x ;;
+    p ) print_html ;;
+    i ) download_png ;;
+    l ) table_result ;;
+    r ) remove_empty ;;
+    \? ) usage ;;
   esac
 done
 
