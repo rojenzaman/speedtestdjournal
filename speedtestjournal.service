@@ -1,0 +1,8 @@
+[Unit]
+Description=Speed Test Journal Service
+
+[Service]
+User=root
+Restart=always
+RestartSec=3600s
+ExecStart=/bin/bash /usr/bin/speedtestdjournal.sh
