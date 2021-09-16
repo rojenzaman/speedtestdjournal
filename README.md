@@ -32,9 +32,11 @@ This script create speedtest-cli journals as json and image data and it can also
 
 ## Install
 
+Switch to [non-root user](#non-root-user) section for rootless setup.
+
 Go to your prefer script path (such as in here /usr/bin) and install it:
 ```
-# curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
+# wget -O /usr/bin/speedtestdjournal.sh https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh
 # chmod 755 /usr/bin/speedtestdjournal.sh
 ```
 
