@@ -1,8 +1,12 @@
 [Unit]
-Description=Speed Test Journal Service
+Description=Speedtest CLI Journal Service
 
 [Service]
 User=root
+CPUQuota=20%
 Restart=always
-RestartSec=3600s
-ExecStart=/bin/bash /usr/bin/speedtestdjournal.sh
+RestartSec=3600
+ExecStart=/usr/bin/speedtestdjournal.sh
+
+[Install]
+WantedBy=multi-user.target
