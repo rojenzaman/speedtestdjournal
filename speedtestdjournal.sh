@@ -32,7 +32,7 @@ image_file=$journal_path/image/$file_date.png           # set image name and loc
 #server="--server SERVER"                               # specify a server ID to test against.
 share="--share"                                         # if you don't want create image files from speedtest.net uncomment this
 #exclude="--exclude EXCLUDE"                            # exclude a server from selection. Can be supplied multiple times
-#ssl="--secure"                                         # use HTTPS instead of HTTP when communicating with speedtest.net operated servers
+ssl="--secure"                                         # use HTTPS instead of HTTP when communicating with speedtest.net operated servers
 
 
 # print html
