@@ -181,7 +181,7 @@ $ cd ~/.local/bin
 ```
 And download it.
 ```
-$ curl https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh > /usr/bin/speedtestdjournal.sh
+$ wget https://raw.githubusercontent.com/rojenzaman/speedtestdjournal/main/speedtestdjournal.sh
 $ chmod 750 speedtestdjournal.sh
 ```
 You can run now, the journal path is `$HOME/speedtestdjournal`. It is under home directory, you can change this with **journal_path** string.
