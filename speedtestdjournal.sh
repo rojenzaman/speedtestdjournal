@@ -66,10 +66,10 @@ exit 0
 }
 
 table_result() {					# list test results as table. (it is a template, must be developed)
-_isp_ping=$( (echo -e "---ISP---\n--PING--" ; cat $journal_path/json/*.json | jq -r '.client.isp, .ping') | paste - - )
-_down_up=$( (echo -e "--DOWN--\n----UP----" ; cat $journal_path/json/*.json | jq -r '.download, .upload' | xargs numfmt --to iec)  | paste - - )
-_date=$( echo "--DATE--" ; cat $journal_path/json/*.json | jq -r '.timestamp' | date '+%d/%m/%Y %T' -f - )
-paste <(cat <<<$_isp_ping) <(cat <<<$_down_up) <(cat <<<$_date) | column -t
+_isp_ping=$( (cat $journal_path/json/*.json | jq -r '.client.isp, .ping') | paste - - )
+_down_up=$( (cat $journal_path/json/*.json | jq -r '.download, .upload' | xargs numfmt --to iec)  | paste - - )
+_date=$( cat $journal_path/json/*.json | jq -r '.timestamp' | date '+%d/%m/%Y %T' -f - )
+paste <(cat <<<$_isp_ping) <(cat <<<$_down_up) <(cat <<<$_date)
 exit 0
 }
 
