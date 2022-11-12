@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Speed Test Journalist for Cron or Daemon, License: GPLv3
-# Author: Rojen Zaman <rojen@riseup.net> rojenz.de
+# Author: Rojen Zaman <rojen@riseup.net> rojen.uk
 #
 # Note: This program use speedtest.net tool of "speedtest-cli",
 #	please read Privacy Policy* before perform this script in your system.
